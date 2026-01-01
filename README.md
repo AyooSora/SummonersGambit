@@ -1,14 +1,14 @@
 <div align="center">
 
-# ⚔️ Anime Card Clash ⚔️
+# ⚔️ Summoner's Gambit ⚔️
 
-### *A Roblox Anime Tower Defense Card Battler*
+### *A Roblox Strategic Card Battler*
 
 [![Roblox Profile](https://img.shields.io/badge/Roblox-AyooSora-00a2ff?style=for-the-badge&logo=roblox)](https://www.roblox.com/users/99067322/profile)
 [![Lua](https://img.shields.io/badge/Lua-5.1-2C2D72?style=for-the-badge&logo=lua)](https://www.lua.org/)
-[![Status](https://img.shields.io/badge/Status-In%20Development-yellow?style=for-the-badge)](https://github.com/AyooSora/AnimeCardClash)
+[![Status](https://img.shields.io/badge/Status-In%20Development-yellow?style=for-the-badge)](https://github.com/AyooSora/SummonersGambit)
 
-*Collect powerful anime-inspired cards, build strategic decks, and battle your way to victory!*
+*Every card is a move. Every move is destiny.*
 
 **Developer:** AyooSora
 
@@ -20,14 +20,15 @@
 
 ## 📖 About
 
-**Anime Card Clash** is a tower defense-style card battler where players summon anime-inspired units, build powerful decks, and engage in strategic turn-based combat. Each card has unique stats, traits, and abilities that can be upgraded through gameplay.
+**Summoner's Gambit** is a strategic card battler where players summon powerful anime-inspired units and engage in tactical turn-based combat. Inspired by Magic: The Gathering's deep strategy and anime gacha games' progression systems, every battle requires careful planning and tactical decision-making.
 
-Inspired by popular anime gacha games and tower defense mechanics, this game features:
-- **Dynamic stat system** with F-SSS rankings
-- **Potential-based progression** - your favorite units get stronger the more you use them
-- **Gacha summon system** with pity mechanics
-- **17+ unique unit traits** (Flying, First Blood, Executioner, etc.)
-- **Shiny variants** for rare cosmetic collectibles
+This isn't just about collecting cards—it's about mastering the art of strategy:
+- **MTG-Inspired Tactics** - Strategic card play with instant responses and combat tricks
+- **Dynamic Stat System** - F-SSS rankings create unique card instances
+- **Potential-Based Progression** - Your favorite units grow stronger through use
+- **Gacha Collection** - Summon legendary units with pity mechanics
+- **17+ Combat Traits** - Flying, First Blood, Executioner, and more
+- **Shiny Variants** - Rare cosmetic collectibles
 
 > **Note:** This repository is primarily used for version control and progress tracking. The game is currently in active development.
 
@@ -105,6 +106,9 @@ Each card has dynamic stats influenced by their stat ranking:
 - **Soul Link** 💝 - Heals for 50% of damage dealt
 - **Guardian** 🛡️ - High defense tank units
 - **Haste** 💨 - Can attack immediately when played
+- **Executioner** 💀 - Instant kill on damage
+- **True Strike** ✨ - Ignores all defense
+- **Divine Shield** 🛡️ - Immune to first damage source
 - And many more...
 
 ### 🎲 Gacha & Progression
@@ -125,22 +129,34 @@ Each card has dynamic stats influenced by their stat ranking:
 
 ## 🎮 Gameplay
 
+### Strategic Card Battles
+Summoner's Gambit emphasizes **tactical decision-making** over automation:
+- **Turn-Based Strategy** - Think ahead, plan your moves
+- **Resource Management** - Energy costs and timing matter
+- **Combat Tricks** - Instant spells can turn the tide
+- **Trait Synergies** - Combine abilities for devastating combos
+- **Counter-Play** - React to your opponent's strategy
+
 ### Card Collection
 Summon cards through the gacha system and build your collection. Each card pulled has:
 - Randomly rolled stat rankings (F-SSS)
 - Randomly assigned combat trait
 - Chance to be a shiny variant
+- Unique instance ID for tracking
 
 ### Deck Building *(Coming Soon)*
 - Build decks of 40-60 cards
 - Strategic element combinations
 - Balance offensive and defensive units
+- Counter-meta deck strategies
+- Side deck for adaptability
 
-### Card Battles *(Coming Soon)*
-- Turn-based combat system
-- Deploy units to defend against waves
-- Use abilities and traits strategically
-- Evolve units through battle experience
+### Strategic Combat *(Coming Soon)*
+- **Turn Structure**: Draw → Main Phase → Combat → End Phase
+- **Instant Speed Responses**: React to opponent actions
+- **Combat Stack**: MTG-inspired priority system
+- **Trait Interactions**: Flying vs. Long Reach, First Blood mechanics
+- **Win Conditions**: Reduce opponent HP to zero or deck them out
 
 ---
 
@@ -159,3 +175,180 @@ Summon cards through the gacha system and build your collection. Each card pulle
 - **Config** - Centralized game constants
 
 ### Architecture
+```
+Client (LocalScripts)
+    ↓
+RemoteEvents
+    ↓
+Server (ModuleScripts)
+    ├── CardModule (Card logic & generation)
+    ├── DataManager (ProfileStore wrapper)
+    ├── StatsModule (Stat calculations)
+    └── BattleModule (Combat system - Coming Soon)
+```
+
+---
+
+## 📊 Current Progress
+
+### ✅ Completed Features
+- [x] ProfileStore data persistence
+- [x] Currency system (Yen/Gems)
+- [x] Gacha summon system (Single/Multi)
+- [x] Pity mechanics (Mythic/Divine)
+- [x] Card stat generation (F-SSS rankings)
+- [x] Trait system (17 unique traits)
+- [x] Shiny system (5% rate)
+- [x] Potential-based luck system
+- [x] Card instance management
+- [x] Inventory tracking
+- [x] Stat multiplier calculations
+
+### 🚧 In Development
+- [ ] Card artwork and UI design
+- [ ] Inventory display interface
+- [ ] Deck builder system
+- [ ] Battle system (MTG-inspired mechanics)
+- [ ] Trait ability implementation
+- [ ] Combat stack and priority system
+
+### 📅 Planned Features
+- [ ] Strategic PvP battles
+- [ ] Ranked ladder system
+- [ ] Daily quests and rewards
+- [ ] Achievement system
+- [ ] Trading system
+- [ ] Draft mode (limited format)
+- [ ] Seasonal events
+- [ ] Tournament system
+
+---
+
+## 🎨 Card Template Example
+```lua
+{
+  name = "Crimson Dragon Knight",
+  cardId = 301,
+  cardType = "Creature",
+  element = "Fire",
+  rarity = "Legendary",
+  stars = 4,
+  cost = 6,
+  
+  -- Base Stats
+  baseDamage = 200,
+  baseCriticalChance = 25,
+  criticalMultiplier = 2.5,
+  baseHealth = 1000,
+  baseDefense = 20,
+  
+  -- Rolled Stats (example with S-rank)
+  damageStat = "S",    -- 200 * 2.0 = 400 damage
+  healthStat = "A",    -- 1000 * 1.5 = 1500 HP
+  defenseStat = "B",   -- 20 * 1.2 = 24% reduction
+  criticalStat = "SS", -- 25 * 2.5 = 62.5% crit chance
+  
+  trait = "Flying",    -- Can only be hit by Long Reach
+  shiny = false,
+  potential = 0,
+  instanceId = "5a3b9c7d-1e4f-8a2b-9d6c-4e7f8a9b0c1d"
+}
+```
+
+---
+
+## 🗺️ Roadmap
+
+### Phase 1: Foundation ✅ (Complete)
+- Core card system
+- Data persistence
+- Gacha mechanics
+- Stat system
+
+### Phase 2: Visual Polish 🎨 (Current)
+- Card artwork creation
+- UI/UX design
+- Animation system
+- Card display frames
+
+### Phase 3: Battle System ⚔️
+- Turn-based combat engine
+- MTG-inspired stack system
+- Trait ability implementation
+- Combat animations
+
+### Phase 4: Competitive Play 📈
+- Ranked ladder
+- Deck archetypes
+- Meta balancing
+- Tournament system
+
+### Phase 5: Community Features 🌐
+- Trading system
+- Guilds/Clans
+- Draft mode
+- Social features
+
+---
+
+## 🎯 Design Philosophy
+
+### Strategic Depth Over Automation
+Unlike automated card battlers, Summoner's Gambit requires:
+- **Active Decision Making** - Every turn matters
+- **Resource Management** - Energy and card advantage
+- **Risk vs. Reward** - High-cost cards vs. tempo
+- **Adaptation** - React to opponent strategies
+- **Skill Expression** - Better players win more
+
+### Inspired by Magic: The Gathering
+- **Instant Speed** - Respond during opponent's turn
+- **Combat Tricks** - Surprise defensive plays
+- **Card Types** - Creatures, Instants, Sorceries, etc.
+- **Stack System** - Priority and spell resolution
+- **Deck Building** - Synergy and consistency
+
+---
+
+## 🙏 Credits & Acknowledgments
+
+### Frameworks & Modules
+- **[ProfileStore](https://github.com/MadStudioRoblox/ProfileStore)** by loleris - Data persistence
+- **[Chance](https://devforum.roblox.com/t/2806263)** by avodey - Weighted RNG system
+
+### Inspiration
+- **Magic: The Gathering** - Strategic card game mechanics
+- **Hearthstone** - Digital card game UI/UX
+- **Anime Gacha Games** - Progression and collection systems
+- **Roblox Card Games** - Community and platform integration
+
+### Learning Resources
+- [Roblox Tower Defense Tutorial](https://www.youtube.com/playlist?list=PL056rW52NIt1F6pKCDT7-8htms-hidrhU)
+- Roblox Developer Hub
+- MTG Rules & Game Design
+
+---
+
+## 📞 Contact
+
+**Developer:** AyooSora
+
+**Roblox Profile:** [AyooSora](https://www.roblox.com/users/99067322/profile)
+
+**Project Repository:** [https://github.com/AyooSora/SummonersGambit](https://github.com/AyooSora/SummonersGambit)
+
+**Roblox Game:** *(Coming Soon)*
+
+---
+
+<div align="center">
+
+### ⭐ This is a personal project tracking repository ⭐
+
+*Every card is a move. Every move is destiny.*
+
+Built with ❤️ using Roblox Studio
+
+**Special thanks to loleris and avodey for their amazing frameworks!**
+
+</div>
