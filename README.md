@@ -1,2 +1,111 @@
-# AnimeCardClash
+<div align="center">
 
+# ⚔️ Anime Card Clash ⚔️
+
+### *A Roblox Anime Tower Defense Card Battler*
+
+[![Roblox](https://img.shields.io/badge/Roblox-Studio-00a2ff?style=for-the-badge&logo=roblox)](https://www.roblox.com/users/99067322/profile)
+[![Lua](https://img.shields.io/badge/Lua-5.1-2C2D72?style=for-the-badge&logo=lua)](https://www.lua.org/)
+[![Status](https://img.shields.io/badge/Status-In%20Development-yellow?style=for-the-badge)](https://github.com/yourusername/AnimeCardClash)
+
+*Collect powerful anime-inspired cards, build strategic decks, and battle your way to victory!*
+
+[Features](#-features) • [Gameplay](#-gameplay) • [Tech Stack](#-tech-stack) • [Installation](#-installation) • [Roadmap](#-roadmap)
+
+</div>
+
+---
+
+## 📖 About
+
+**Anime Card Clash** is a tower defense-style card battler where players summon anime-inspired units, build powerful decks, and engage in strategic turn-based combat. Each card has unique stats, traits, and abilities that can be upgraded through gameplay.
+
+Inspired by popular anime gacha games and tower defense mechanics, this game features:
+- **Dynamic stat system** with F-SSS rankings
+- **Potential-based progression** - your favorite units get stronger the more you use them
+- **Gacha summon system** with pity mechanics
+- **17+ unique unit traits** (Flying, First Blood, Executioner, etc.)
+- **Shiny variants** for rare cosmetic collectibles
+
+---
+
+## ✨ Features
+
+### 🎴 Card System
+- **6 Rarity Tiers**: Common → Rare → Epic → Legendary → Mythic → Divine
+- **Stat Rankings**: F, E, D, C, B, A, S, SS, SSS (with multipliers 0.5x - 3.0x)
+- **5 Card Types**: Creature, Instant, Sorcery, Enchantment, Artifact
+- **8 Elements**: Fire 🔥, Water 💧, Earth 🌿, Lightning ⚡, Wind 🌪️, Dark 🌑, Light ✨, Neutral ⚪
+- **Shiny Variants**: 5% chance for cosmetic shiny versions
+
+### ⚔️ Combat Stats
+Each card has dynamic stats influenced by their stat ranking:
+- **Damage** - Attack power per hit
+- **Health** - Total HP before death
+- **Defense** - % damage reduction
+- **Critical Chance** - % chance to land critical hits
+- **Critical Multiplier** - Bonus damage on crits (2x-3x)
+- **Speed** - Attacks per turn
+- **Range** - Number of enemies hit
+
+### 🎯 Unit Traits
+17+ unique combat traits including:
+- **Flying** ⚡ - Can only be targeted by Long Reach units
+- **First Blood** 🗡️ - Strikes before enemy counter-attacks
+- **Executioner** ⚔️ - Instantly destroys any unit damaged
+- **Soul Link** 💝 - Heals for 50% of damage dealt
+- **Guardian** 🛡️ - High defense tank units
+- **Haste** 💨 - Can attack immediately when played
+- And many more...
+
+### 🎲 Gacha & Progression
+- **Summon System**: Single pulls (100 Yen) or Multi-pulls (900 Yen)
+- **Pity System**: 
+  - Guaranteed Mythic every 75 pulls
+  - Guaranteed Divine every 150 pulls
+- **Potential System**: Units gain potential (0-100) through use, increasing chances for better stat rolls on future summons
+- **Currency**: Earn Yen (free) and Gems (premium) through gameplay
+
+### 💾 Data Persistence
+- **ProfileStore Integration**: Reliable data saving with session locking
+- **Auto-Save**: Profiles save every 5 minutes automatically
+- **Data Reconciliation**: Missing data auto-fills from template
+- **GDPR Compliant**: User ID tracking for data rights
+
+---
+
+## 🎮 Gameplay
+
+### Card Collection
+Summon cards through the gacha system and build your collection. Each card pulled has:
+- Randomly rolled stat rankings (F-SSS)
+- Randomly assigned combat trait
+- Chance to be a shiny variant
+
+### Deck Building *(Coming Soon)*
+- Build decks of 40-60 cards
+- Strategic element combinations
+- Balance offensive and defensive units
+
+### Tower Defense Battles *(Coming Soon)*
+- Turn-based combat system
+- Deploy units to defend against waves
+- Use abilities and traits strategically
+- Evolve units through battle experience
+
+---
+
+## 🛠️ Tech Stack
+
+### Core Technologies
+- **Roblox Studio** - Game engine
+- **Lua 5.1** - Primary scripting language
+- **ProfileStore** - Data persistence ([loleris/ProfileStore](https://github.com/MadStudioRoblox/ProfileStore))
+
+### Custom Systems
+- **Chance Module** - Weighted RNG with luck modifiers ([avodey/Chance](https://devforum.roblox.com/t/2806263))
+- **StatsModule** - Dynamic stat calculation system
+- **CardModule** - Card generation and instance management
+- **DataManager** - ProfileStore wrapper with auto-save
+
+### Architecture
