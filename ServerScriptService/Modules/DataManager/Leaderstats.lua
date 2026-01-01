@@ -92,7 +92,7 @@ function module:Create(player: Player, profile)
 			cardValue.Parent = CardValues
 
 			-- Clone card objects for display (optional)
-			local cardTemplate = ServerScriptService:WaitForChild("CardModule"):WaitForChild("Cards"):FindFirstChild(cardName)
+			local cardTemplate = ServerScriptService:WaitForChild("Modules"):WaitForChild("CardModule"):WaitForChild("Cards"):FindFirstChild(cardName)
 			if cardTemplate then
 				for i = 1, count do
 					local cardClone = cardTemplate:Clone()
