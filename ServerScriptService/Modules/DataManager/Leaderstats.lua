@@ -3,15 +3,6 @@
 local module = {}
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local CardTable = {
-	"AUnit",
-	"BUnit",
-	"CUnit",
-	"DUnit",
-	"EUnit",
-	"FUnit",
-}
-
 function module:Create(player: Player, profile)
 	-- Main stats folder
 	local leaderstats = Instance.new("Folder")
