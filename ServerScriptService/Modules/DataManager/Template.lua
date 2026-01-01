@@ -11,6 +11,11 @@ local module = {
 	
 	Cards = {
 		["AUnit"] = 0,
+		["BUnit"] = 0,
+		["CUnit"] = 0,
+		["DUnit"] = 0,
+		["EUnit"] = 0,
+		["FUnit"] = 0,
 	}
 }
 
