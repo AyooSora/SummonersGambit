@@ -4,13 +4,15 @@
 
 ### *A Roblox Anime Tower Defense Card Battler*
 
-[![Roblox](https://img.shields.io/badge/Roblox-Studio-00a2ff?style=for-the-badge&logo=roblox)](https://www.roblox.com/users/99067322/profile)
+[![Roblox Profile](https://img.shields.io/badge/Roblox-AyooSora-00a2ff?style=for-the-badge&logo=roblox)](https://www.roblox.com/users/99067322/profile)
 [![Lua](https://img.shields.io/badge/Lua-5.1-2C2D72?style=for-the-badge&logo=lua)](https://www.lua.org/)
-[![Status](https://img.shields.io/badge/Status-In%20Development-yellow?style=for-the-badge)](https://github.com/yourusername/AnimeCardClash)
+[![Status](https://img.shields.io/badge/Status-In%20Development-yellow?style=for-the-badge)](https://github.com/AyooSora/AnimeCardClash)
 
 *Collect powerful anime-inspired cards, build strategic decks, and battle your way to victory!*
 
-[Features](#-features) • [Gameplay](#-gameplay) • [Tech Stack](#-tech-stack) • [Installation](#-installation) • [Roadmap](#-roadmap)
+**Developer:** AyooSora
+
+[Features](#-features) • [Frameworks](#-frameworks-used) • [Gameplay](#-gameplay) • [Tech Stack](#-tech-stack) • [Roadmap](#-roadmap)
 
 </div>
 
@@ -26,6 +28,53 @@ Inspired by popular anime gacha games and tower defense mechanics, this game fea
 - **Gacha summon system** with pity mechanics
 - **17+ unique unit traits** (Flying, First Blood, Executioner, etc.)
 - **Shiny variants** for rare cosmetic collectibles
+
+> **Note:** This repository is primarily used for version control and progress tracking. The game is currently in active development.
+
+---
+
+## 🔧 Frameworks Used
+
+This project wouldn't be possible without these amazing open-source frameworks created by talented Roblox developers:
+
+### **[ProfileStore](https://github.com/MadStudioRoblox/ProfileStore)** by loleris (MAD STUDIO)
+<img src="https://img.shields.io/badge/ProfileStore-v1.0.1-blue?style=flat-square" alt="ProfileStore">
+
+ProfileStore is a robust data persistence solution that handles all player data saving/loading with session locking, auto-save functionality, and GDPR compliance. It ensures that player progress is never lost and handles edge cases like server crashes gracefully.
+
+**Why I use it:**
+- ✅ Automatic session locking prevents data loss
+- ✅ Built-in auto-save every 5 minutes
+- ✅ Handles server shutdowns gracefully
+- ✅ Profile reconciliation for missing data
+- ✅ Battle-tested in production games
+
+**Links:**
+- 📦 [GitHub Repository](https://github.com/MadStudioRoblox/ProfileStore)
+- 🛒 [Roblox Creator Store](https://create.roblox.com/store/asset/109379033046155/ProfileStore)
+- 📖 [Documentation](https://madstudioroblox.github.io/ProfileStore/)
+
+---
+
+### **[Chance](https://devforum.roblox.com/t/2806263)** by avodey (avocado)
+<img src="https://img.shields.io/badge/Chance-v1.0.1-green?style=flat-square" alt="Chance">
+
+Chance is a lightweight weighted random number generation framework with built-in luck modifiers. It powers our entire stat rolling system, trait selection, and gacha mechanics.
+
+**Why I use it:**
+- ✅ Clean API for weighted randomness
+- ✅ Luck modifier support (0-10 scale)
+- ✅ Perfect for gacha and loot systems
+- ✅ No dependencies
+- ✅ Extremely lightweight
+
+**Links:**
+- 💬 [DevForum Post](https://devforum.roblox.com/t/chance-easy-random-items-luck-modifiers/2806263)
+- 📖 [Documentation](https://devforum.roblox.com/t/2806263)
+
+---
+
+**Huge thanks to these developers for making their work open-source!** 🙏
 
 ---
 
@@ -87,7 +136,7 @@ Summon cards through the gacha system and build your collection. Each card pulle
 - Strategic element combinations
 - Balance offensive and defensive units
 
-### Tower Defense Battles *(Coming Soon)*
+### Card Battles *(Coming Soon)*
 - Turn-based combat system
 - Deploy units to defend against waves
 - Use abilities and traits strategically
@@ -101,11 +150,12 @@ Summon cards through the gacha system and build your collection. Each card pulle
 - **Roblox Studio** - Game engine
 - **Lua 5.1** - Primary scripting language
 - **ProfileStore** - Data persistence ([loleris/ProfileStore](https://github.com/MadStudioRoblox/ProfileStore))
+- **Chance** - Weighted RNG with luck modifiers ([avodey/Chance](https://devforum.roblox.com/t/2806263))
 
 ### Custom Systems
-- **Chance Module** - Weighted RNG with luck modifiers ([avodey/Chance](https://devforum.roblox.com/t/2806263))
 - **StatsModule** - Dynamic stat calculation system
 - **CardModule** - Card generation and instance management
 - **DataManager** - ProfileStore wrapper with auto-save
+- **Config** - Centralized game constants
 
 ### Architecture
