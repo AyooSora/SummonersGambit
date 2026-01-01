@@ -12,8 +12,8 @@ local SUMMON_COSTS = {
 		Yen = 100,
 		Gems = 0
 	},
-	Multi = { -- 10-pull
-		Yen = 900, -- 10% discount
+	Multi = {
+		Yen = 900,
 		Gems = 0
 	}
 }
@@ -26,7 +26,6 @@ remote.OnServerEvent:Connect(function(player, summonType)
 		return
 	end
 
-	-- Validate summon type
 	if summonType ~= "Single" and summonType ~= "Multi" then
 		warn("Invalid summon type: " .. tostring(summonType))
 		return
@@ -72,18 +71,30 @@ remote.OnServerEvent:Connect(function(player, summonType)
 	local failedPulls = 0
 
 	for i = 1, pullCount do
-		-- Call CardModule.ChooseCard
+		-- Step 1: Choose which card to summon (determines rarity)
 		local cardName, rarity = CardModule.ChooseCard(player, cardFolder, 0)
 
-		-- CRITICAL: Only process if we actually got a card
 		if cardName and rarity then
-			-- Update player's data profile
+
+			-- Step 2: Get player's potential for this card type
+			local cardPotential = profile.Data.CardPotential[cardName] or 0
+
+			-- Step 3: Generate FULL card data with rolled stats/traits/shiny
+			local cardDataTable = CardModule.GetCardDataTable(player, cardName, cardPotential)
+
+			if not cardDataTable then
+				warn("Failed to generate card data for: " .. cardName)
+				failedPulls += 1
+				continue
+			end
+
+			-- Step 4: Update player's profile
 			if not profile.Data.Cards[cardName] then
 				profile.Data.Cards[cardName] = 0
 			end
 			profile.Data.Cards[cardName] += 1
 
-			-- Update HiddenStats display
+			-- Step 5: Update HiddenStats display
 			local hiddenStats = player:FindFirstChild("HiddenStats")
 			if hiddenStats then
 				local cardsFolder = hiddenStats:FindFirstChild("Cards")
@@ -101,11 +112,11 @@ remote.OnServerEvent:Connect(function(player, summonType)
 						cardValue.Value = profile.Data.Cards[cardName]
 					end
 
-					-- **FIX: Clone the actual card object to inventory**
+					-- Clone card object to inventory
 					local cardTemplate = cardFolder:FindFirstChild(cardName)
 					if cardTemplate then
 						local cardClone = cardTemplate:Clone()
-						cardClone.Parent = cardsFolder -- Add to HiddenStats/Cards
+						cardClone.Parent = cardsFolder
 						print("Cloned " .. cardName .. " to inventory!")
 					else
 						warn("Card template not found: " .. cardName)
@@ -113,20 +124,19 @@ remote.OnServerEvent:Connect(function(player, summonType)
 				end
 			end
 
-			-- Add to results
-			table.insert(pulledCards, {
-				Name = cardName,
-				Rarity = rarity
-			})
+			-- Step 6: Add COMPLETE card data to results
+			table.insert(pulledCards, cardDataTable)
 
 			print(player.Name .. " pulled: " .. cardName .. " (" .. rarity .. ")")
+			print("  Stats: DMG=" .. cardDataTable.damageStat .. " HP=" .. cardDataTable.healthStat)
+			print("  Trait: " .. cardDataTable.trait)
+			print("  Shiny: " .. tostring(cardDataTable.shiny))
+
 		else
-			-- Card pull failed
 			failedPulls += 1
 			warn("Failed to pull card for " .. player.Name .. " on pull #" .. i)
 		end
 
-		-- Delay for multi-summon animation
 		if summonType == "Multi" then
 			task.wait(0.1)
 		end
@@ -134,19 +144,19 @@ remote.OnServerEvent:Connect(function(player, summonType)
 
 	-- Check if any cards were actually pulled
 	if #pulledCards > 0 then
+		-- Send FULL card data to client
 		remote:FireClient(player, "Success", pulledCards)
 		print(player.Name .. " summoned " .. #pulledCards .. " card(s)")
 
 		if failedPulls > 0 then
-			warn(failedPulls .. " pulls failed - check if all rarity cards exist in Cards folder!")
+			warn(failedPulls .. " pulls failed!")
 		end
 	else
-		-- No cards were pulled at all - refund currency
 		warn("No cards pulled for " .. player.Name .. " - REFUNDING CURRENCY")
 		yen.Value += cost.Yen
 		gems.Value += cost.Gems
 
-		remote:FireClient(player, "Error", "Failed to summon cards. Currency refunded. Please contact a developer!")
+		remote:FireClient(player, "Error", "Failed to summon cards. Currency refunded.")
 		error("CRITICAL: All " .. pullCount .. " pulls failed for " .. player.Name)
 	end
 end)
